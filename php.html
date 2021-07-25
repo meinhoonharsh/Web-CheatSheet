@@ -1,0 +1,167 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>PHP CheatSheet - CheatSheets to make work Simple</title>
+   <link rel="stylesheet" href="style.css">
+   <link href="prism/prism.css" rel="stylesheet" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <style>
+
+   </style>
+</head>
+
+<body>
+
+   <header>PHP CheatSheet by SemiKolan</header>
+   <div class="topnav" id="myTopnav">
+      <a href="index.html">HTML</a>
+      <a href="css.html">CSS</a>
+      <a href="js.html">JavaScript</a>
+      <a href="php.html" class="active">PHP</a>
+      <a href="python.html">Python</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+         <i class="fa fa-bars"></i>
+      </a>
+   </div>
+
+   <div class="container">
+
+
+
+      <button class="accordion">Using PHP in HTML</button>
+      <div class="panel">
+         <pre>
+            <code class="language-php">
+               &lt;?php
+                  #code to be executed
+               ?&gt;
+            </code>
+         </pre>
+      </div><button class="accordion">Connection.php</button>
+      <div class="panel">
+         <pre>
+                  <code class="language-php">
+                     &lt;?php
+                     
+                     
+                     if($_SERVER['SERVER_NAME']=="localhost" || $_SERVER['SERVER_NAME']=="127.0.0.1"){
+                     $servername = "localhost";
+                     $username = "root";
+                     $password = "";
+                     $dbname = "database_name";
+                     }
+                     else{
+                     $servername = "localhost";
+                     $username = "";
+                     $password = "";
+                     $dbname = "";
+                     }
+                     
+                     // Create connection
+                     $conn = mysqli_connect($servername, $username, $password, $dbname);
+      
+                     // Check connection
+                     if (!$conn) {
+                       die("Connection failed: " . mysqli_connect_error());
+                     }
+                     
+                     ?&gt;
+                  </code>
+               </pre>
+      </div>
+
+
+      <button class="accordion">CRUD - Create/Insert (Mysql)</button>
+      <div class="panel">
+         <pre>
+            <code class="language-php">
+               $query = "INSERT INTO `table_name` (firstname, lastname, email) VALUES ('Harsh', 'Vishwakarma', 'harshprogrammer782@gmail.com')";
+               
+               if (mysqli_query($conn, $query)) {
+                  $last_id = mysqli_insert_id($conn); //id of the last inserted element
+                  echo "New record created successfully";
+               } else {
+                  echo "Error: " . $query . "&lt;br&gt;" . mysqli_error($conn);
+               }
+            </code>
+         </pre>
+      </div>
+
+
+      <button class="accordion">CRUD - Read (Mysql)</button>
+      <div class="panel">
+         <pre>
+            <code class="language-php">
+               $query = "SELECT * from `table_name` WHERE id ='id_number'";
+               $result = mysqli_query($conn, $query);
+               if (mysqli_num_rows($result) > 0) {
+                  while($row = mysqli_fetch_assoc($result)){
+                     #code to be execute for each affected row
+                     #use $row['column_name'] to access element
+                  }
+               }else{
+                  echo "No Result Found";
+               }
+            </code>
+         </pre>
+      </div>
+
+
+
+      <button class="accordion">CRUD - Update (Mysql)</button>
+      <div class="panel">
+         <pre>
+            <code class="language-php">
+               $query = "UPDATE `table_name` SET lastname='Doe' WHERE id=2";
+               
+               if (mysqli_query($conn, $query)) {
+                  echo "Record updated successfully";
+               } else {
+                  echo "Error updating record: " . mysqli_error($conn);
+               }
+            </code>
+         </pre>
+      </div>
+
+
+
+      <button class="accordion">CRUD - DELETE (Mysql)</button>
+      <div class="panel">
+         <pre>
+            <code class="language-php">
+               $query = "DELETE FROM MyGuests WHERE id=3";
+               
+               if (mysqli_query($conn, $query)) {
+                  echo "Record deleted successfully";
+               } else {
+                  echo "Error deleting record: " . mysqli_error($conn);
+               }
+            </code>
+         </pre>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+   </div>
+
+
+
+   <script src="prism/prism.js"></script>
+   <script src="script.js"></script>
+   <script>
+
+   </script>
+</body>
+
+</html>
